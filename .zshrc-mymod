@@ -99,7 +99,11 @@ alias rm='/usr/local/bin/trash -F'
 # buffer clear on iTerm2
 alias cls='printf "\e]50;ClearScrollback\a"'
 
-alias ll='ls -lh'
+#unalias ls
+#alias ll="ls -FlGh --time-style='+%Y-%m-%d %H:%M:%S' | sed -E '2,$s/ +[0-9]+//'"
+#alias ll="ls -lGh --color --time-style='+%Y-%m-%d %H:%M:%S'"
+alias ls="ls --color"
+alias ll="ls -lGh"
 
 ##########################
 # history
