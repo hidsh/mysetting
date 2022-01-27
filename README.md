@@ -24,3 +24,6 @@ cd mysetting
 ./install.sh
 ```
 
+# related repos
+
+- [my prezto setting](https://github.com/hidsh/prezto.git)
