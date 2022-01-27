@@ -1,0 +1,82 @@
+[url "hidsh@github.com:"]
+	pushinsteadof = https://github.com/
+
+[url "github:"]
+	InsteadOf = https://github.com/
+    InsteadOf = git@github.com:
+
+[user]
+	name = hidsh
+	email = 775213+hidsh@users.noreply.github.com
+[push]
+	default = simple
+[core]
+	editor = vim -u NONE -c \"set fenc=utf-8\"
+	whitespace = cr-at-eol
+	pager = $PAGER
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[diff]
+      tool = bcomp
+      renameLimit = 99999
+[difftool]
+      prompt = false
+[difftool "bcomp"]
+      trustExitCode = true
+        cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE"
+[merge]
+      tool = bcomp
+[mergetool]
+      prompt = false
+[mergetool "bcomp"]
+      trustExitCode = true
+        cmd = "/usr/local/bin/bcomp" "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[alias]
+    alias = config --get-regexp \"^alias\\.\"
+    l = log --graph --date-order --all --pretty=format:'%h %Cred%d %Cgreen%ad %Cblue%cn %Creset%s' --date=short
+	files = log --stat --no-merges --oneline
+	log-last = log -1 HEAD
+	unstage = reset HEAD --
+	uncommit = reset --hard HEAD^
+    a = add -A --verbose
+    amend = commit --amend --no-edit
+    amend-comment = commit --amend
+    s = status
+	c = commit
+	co = checkout
+    bl = branch -a
+    bs = checkout
+    bs-master = checkout master
+    bmk = checkout -b
+    bpush = push -u origin
+    bdel = branch -D
+    bdel-remote = push --delete origin
+	brename = branch -m
+    b-rename-local = branch -m
+	tmk = tag
+	tpush = push origin 
+	tl = tag -n
+	td-unpushed = tag -d 
+    stash-diff = stash show -p
+    stash-rm-all = stash clear
+    rm-untrack = rm -r --cached
+
+[github]
+	user = hidsh
+	oauth-token = XXXXXX
+
+#[diff "to_utf8"]
+#	textconv = nkf -w
+
+[diff "to_utf16"]
+	textconv = iconv -f utf-16 -t utf-8

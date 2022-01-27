@@ -1,0 +1,322 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+# preztoプロンプト
+# master	branch
+# ↑		pushしてないコミットあり
+# *		add してないファイルあり
+# x
+# +		コミットしてないファイルあり
+# ■		git 管理外のファイルあり
+# →
+
+#---------------------------------------
+# # unnbind key C-s, C-q in terminal
+# if [[ -t 0 ]]; then
+#   stty stop undef
+#   stty start undef
+# fi
+
+# # small word for C-w
+# WORDCHARS='*?.[]~&;!#$%^(){}<>'
+
+# # bind key M-h(Alt-h) <- backward-kill-word(C-w)
+# stty werase undef
+# bind '"\eh": backward-kill-word'
+
+# # file browser
+# alias e='/mnt/c/Windows/explorer.exe'
+# alias e='open'
+
+# # for Windows/wsh
+# eval `dircolors -b ~/.dircolors`
+
+# # for ubuntu
+# ubuntu-version() {
+#     echo `cat /etc/lsb-release |grep -oP '(?<=").+(?=")'`
+# }
+
+# if [ -f /etc/lsb-release ]; then
+#     echo `ubuntu-version`
+# fi
+#---------------------------------------
+
+# zsh-autosuggestions color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=39'
+
+# gtags
+# export GTAGSLIBPATH=/usr/include
+
+# for qmk_firmware
+export GTAGSLIBPATH=/usr/local/Cellar/avr-gcc/7.3.0/avr/include
+# :/usr/local/Cellar/avr-gcc/7.3.0/avr/include/sys\
+# :/usr/local/Cellar/avr-gcc/7.3.0/avr/include/avr\
+# :/usr/local/Cellar/avr-gcc/7.3.0/avr/include/util\
+
+# editor
+export EDITOR='vim'
+export VISUAL='vim'
+#export PAGER='less'
+# brew install vimpager
+#export PAGER=vimpager
+#alias less=$PAGER
+#alias more=$PAGER
+
+# represent file path in title bar
+precmd() {eval 'echo -ne "\033]0;${PWD/#$HOME/~}\007"'}
+
+# my zip command
+# zip DIR-NAME
+function zzzip () {
+    dir=$1
+    d=`echo $dir | sed -e 's/\/$//'`
+    \zip -r $d.zip $d
+    if [ "$?" -eq 0 ]; then
+        echo
+        echo -n "  Zipped to: "
+        ls -d $PWD/{*,.*} | grep $d.zip
+    fi
+}
+alias zip=zzzip
+
+# command alias
+# (to invoke original command, use "\command")
+#
+#alias emacs='/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.4/bin/emacs-26.1'
+alias rm='/usr/local/bin/trash -F'
+
+# buffer clear on iTerm2
+alias cls='printf "\e]50;ClearScrollback\a"'
+
+alias ll='ls -lh'
+
+##########################
+# history
+
+# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
+setopt hist_ignore_all_dups
+
+# スペースで始まるコマンド行はヒストリリストから削除
+setopt hist_ignore_space
+
+# ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_verify
+
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+
+# 古いコマンドと同じものは無視
+setopt hist_save_no_dups
+
+# historyコマンドは履歴に登録しない
+setopt hist_no_store
+
+# 補完時にヒストリを自動的に展開
+setopt hist_expand
+
+# 履歴をインクリメンタルに追加
+setopt inc_append_history
+
+
+# ##########################
+# # zsh の exntended_glob と HEAD^^^ を共存させる。
+# # http://subtech.g.hatena.ne.jp/cho45/20080617/1213629154
+# # git-escape-magic だとなぜか . ~/.zshrc したあとキーを1文字入力すると Ctrl-dが入るみたいなのでこれで対処
+# # ...したつもりだったけど、cd でpreztoの補完候補が出力されたままになるので無効化しとく
+# typeset -A abbreviations
+# abbreviations=(
+#   "L"    "| $PAGER"
+#   "G"    "| grep"
+#   "X"    "| xargs"
+#   "T"    "| tail"
+#   "C"    "| cat"
+#   "W"    "| wc"
+#   "A"    "| awk"
+#   "S"    "| sed"
+#   "E"    "2>&1 > /dev/null"
+#   "N"    "> /dev/null"
+#   "HEAD^"     "HEAD\\^"
+#   "HEAD^^"    "HEAD\\^\\^"
+#   "HEAD^^^"   "HEAD\\^\\^\\^"
+#   "HEAD^^^^"  "HEAD\\^\\^\\^\\^\\^"
+#   "HEAD^^^^^" "HEAD\\^\\^\\^\\^\\^"
+# )
+#
+# magic-abbrev-expand () {
+#   local MATCH
+#   LBUFFER=${LBUFFER%%(#m)[-_a-zA-Z0-9^]#}
+#   LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
+# }
+#
+# magic-abbrev-expand-and-insert () {
+#   magic-abbrev-expand
+#   zle self-insert
+# }
+#
+# # magic-abbrev-expand-and-accept () {
+# #   magic-abbrev-expand
+# #   zle accept-line
+# # }
+#
+# zle -N magic-abbrev-expand-and-insert
+# # zle -N magic-abbrev-expand-and-accept
+# # bindkey "\r"  magic-abbrev-expand-and-accept # M-x RET はできなくなる
+# bindkey " "   magic-abbrev-expand-and-insert
+
+##########################
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_COMPLETION_TRIGGER=',,'	# ,,<TAB>でfzfに入る
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border --header-lines=0 --inline-info'
+export FZF_CTRL_T_OPTS='--height 100% --preview="[[ $(file --mime {}) =~ binary ]] && \
+                 echo {} is a binary file || \
+                 (highlight -O ansi -l {} || \
+                  cat {}) 2> /dev/null | head -100"'
+export FZF_CTRL_R_OPTS='--with-nth=2..'
+
+if type rg &> /dev/null; then
+	export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    #export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
+
+# rga: rip-grep all with fzf
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
+
+# fzf-git-hash
+function fzf-git-hash() {
+        git gr | fzf | sed -e "s/^[\*\|][ |\\\/\*]*//g" | awk '{ print $1 }'
+}
+#alias -g C='$(fzf-git-hash)'
+
+# gibo using fzf
+#function gi() {
+#    if [ -z "$2" ] &&  [ "dump" = "$1" ]; then
+#        command gibo list | sed -e 's/=== .\+ ===//g' | sed -e 's/\s\+/\n/g' | grep -v '^\s*$' | fzf | xargs -I@ gibo dump @
+#    else
+#        command gibo $*
+#    fi
+#}
+
+# command history
+# function select-history() {
+#   BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="Hist > ")
+#   CURSOR=$#BUFFER
+# }
+# zle -N select-history
+# bindkey '^r' select-history
+
+# cdr with fzf
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':completion:*' recent-dirs-insert both
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-pushd true
+
+function fzf-cdr() {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf --prompt="cd:")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+   zle clear-screen
+}
+zle -N fzf-cdr
+bindkey '^v' fzf-cdr
+
+
+
+# enhancd
+#source ~/git-clone/enhancd/init.sh
+
+# docker completion
+# if [ -e ~/.zsh/completions ]; then
+#   fpath=(~/.zsh/completions $fpath)
+# fi
+
+# alias dps='docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}"'
+# alias dc='docker exec -it `dps | fzf | cut -f 1` /bin/bash'
+
+autoload -U compinit
+compinit
+
+# heroku autocomplete setup
+# HEROKU_AC_ZSH_SETUP_PATH=/Users/g/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;export PATH="/usr/local/opt/icu4c/bin:$PATH"
+# export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+# source /Users/g/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# small word for C-w, M-h
+WORDCHARS='*?.[]~&;!#$%^(){}<>'
+
+# meld
+alias meld='/Applications/Meld.app/Contents/MacOS/Meld'
+
+# wine
+# alias wine='/Applications/Wine\ Stable.app/Contents/MacOS/wine'
+
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="/usr/local/share/emacs/site-lisp/clisp:$PATH"
+
+alias bp=bpython
+alias e=open
+
+# postgresql@13 (from brew)
+export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+export LANNG=en_US.utf-8
+export LC_ALL=en_US.utf-8
+
+export PATH=$HOME/bin:$PATH      # add to end of this file
+
+# less setting (Mac)
+export LESS='-R -N -S'
+export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'
+
+# change background color to yellow for highlight search word in less
+# https://qiita.com/PruneMazui/items/8a023347772620025ad6
+export LESS_TERMCAP_so=$(echo -e '\e[1;43m\e[30m')
+export LESS_TERMCAP_se=$(echo -e '\e[0m')
+
+# gitignore.io cli
+#function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+
+alias gi='gibo -dump'
+alias file='file -h'    # not follow symlink
+
+export GIT_INIT_ID=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+
+# coreutils from brew
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+alias dd='dd status=progress'
+
+# sshfs
+
