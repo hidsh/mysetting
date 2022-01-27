@@ -1,2 +1,10 @@
 .DS_Store
-
+GPATH
+GRTAGS
+GTAGS
+.dep
+*.o
+*.swp
+*.bak*
+*~
+\#*

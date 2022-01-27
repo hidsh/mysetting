@@ -1,6 +1,9 @@
 #command
 m forw-scroll
 M back-scroll
+h left-scroll
+l right-scroll
 
 #env
-LESS = -N
+#LESS = -N -S
+

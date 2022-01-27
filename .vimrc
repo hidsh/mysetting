@@ -12,7 +12,7 @@
 "------------------------------------------------------
 
 nnoremap ; :
-nnoremap : <ESC>	" disable :
+"nnoremap : <ESC>	" disable :
 nnoremap 4 $
 
 noremap j gj
@@ -21,6 +21,12 @@ noremap gj j
 noremap gk k
 noremap m <C-f>
 noremap M <C-b>
+noremap U <C-r>
+noremap q <Nop>
+noremap a A
+noremap 4 $
+noremap 3 #
+noremap 8 *
 
 
 inoremap <silent> jj <ESC>
@@ -35,7 +41,17 @@ function! s:toggle_linum()
 endfunction
 
 command! Linum call s:toggle_linum()
+cnoreabbrev l Linum
 
+"
+" truncate-lines
+"
+function! s:toggle_wrap()
+	set wrap!
+endfunction
+
+command! TrancateLines call s:toggle_wrap()
+cnoreabbrev t TrancateLines
 
 "
 " other setting
@@ -86,10 +102,18 @@ syntax on
 filetype plugin on
 filetype indent on
 
+" 自動コメントを無効化
+au FileType * setlocal formatoptions-=r
+au FileType * setlocal formatoptions-=o
+
 "OSのクリップボードを使用する
 set clipboard+=unnamed
 
 "sudoを忘れて権限のないファイルを編集した時\sudoで保存
 nmap ,sudo :w !sudo tee %<CR>
 
+"indent  tab->space:	set expandtab
+"        tab<-space:	set noet
+"        width:			set tabstop=2
+set noet ts=4 sts=-1 sw=0
 
