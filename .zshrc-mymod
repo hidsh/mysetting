@@ -322,5 +322,6 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 alias dd='dd status=progress'
 
-# sshfs
+# node setting for jest
+export NODE_OPTIONS=--experimental-vm-modules
 
