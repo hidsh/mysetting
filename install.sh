@@ -12,5 +12,6 @@ put_a .dircolors
 put_a .gitignore
 put_a .lesskey
 put_a .vimrc
+put_a package.json
 put_b .zshrc-mymod ~/.zprezto/runcoms/zshrc
 
