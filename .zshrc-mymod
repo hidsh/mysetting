@@ -53,7 +53,7 @@ fi
 #---------------------------------------
 
 # zsh-autosuggestions color
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=39'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 
 # gtags
 # export GTAGSLIBPATH=/usr/include
@@ -322,6 +322,28 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 alias dd='dd status=progress'
 
+function no-cmd() {
+	echo "This command is Unbound by 'no-cmd' in .zshrc"
+}
+
+alias pico=no-cmd
+alias nano=no-cmd
+
 # node setting for jest
-export NODE_OPTIONS=--experimental-vm-modules
+#export NODE_OPTIONS=--experimental-vm-modules
+
+# raspberry pi pico-sdk
+export PICO_SDK_PATH="$HOME/git-clone/pico-sdk"
+
+function picoprog () {
+	if [ $# != 1 ]; then
+		echo "USAGE: $0 ELF_PATH"
+	else
+		elf_name=$1
+		command openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -c "program ${elf_name} verify reset exit"
+	fi
+}
+
+# serial port
+export SERIAL=/dev/tty.usbmodem14201
 

@@ -57,6 +57,11 @@ cnoreabbrev t TrancateLines
 " other setting
 "
 
+" swp, undo, バックアップファイル出力無効
+set noswapfile
+set noundofile
+set nobackup
+
 "ターミナル接続を高速にする
 set ttyfast
 
@@ -117,3 +122,4 @@ nmap ,sudo :w !sudo tee %<CR>
 "        width:			set tabstop=2
 set noet ts=4 sts=-1 sw=0
 
+autocmd BufWritePost ~/.lesskey call system("lesskey " .. expand("%"))
