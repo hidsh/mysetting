@@ -27,9 +27,11 @@ noremap a A
 noremap 4 $
 noremap 3 #
 noremap 8 *
+noremap ] %
+"noremap <A-j> gT
+"noremap <A-k> gt
 
-
-inoremap <silent> jj <ESC>
+"inoremap <silent> jj <ESC>
 
 "
 " line number
@@ -100,7 +102,9 @@ set showmatch
 "set paste
 
 "カーソルラインを表示する
-set cursorline
+"set cursorline
+:autocmd InsertEnter,InsertLeave * set cul!
+
 
 "ファイルタイプに応じて挙動,色を変える
 syntax on
@@ -122,4 +126,5 @@ nmap ,sudo :w !sudo tee %<CR>
 "        width:			set tabstop=2
 set noet ts=4 sts=-1 sw=0
 
+" .lesskeyを保存したら自動的にコンパイルする
 autocmd BufWritePost ~/.lesskey call system("lesskey " .. expand("%"))
