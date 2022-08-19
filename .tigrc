@@ -1,0 +1,26 @@
+# key bindings
+bind generic	g			move-first-line
+bind generic	G			move-last-line
+bind main		G			move-last-line
+bind generic	<Esc>o		view-grep
+#bind main		<Esc>g		:toggle commit-title-graph
+
+
+# main viewの左端にコミットIDを表示する
+set main-view = id date author commit-title:graph=yes,refs=yes
+# デフォルト
+# set main-view = date author commit-title:graph=yes,refs=yes
+
+# 表示
+set main-view-date-local = yes
+set vertical-split = yes
+set line-graphics = utf-8
+set ignore-case = true
+
+# 色
+# color	area		fgcolor		bgcolor		[attributes]
+color	cursor		default		default		underline
+color	title-focus	black		blue
+color	status		green		default
+color	main-remote	red			default
+color	main-head	red			default
