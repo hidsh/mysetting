@@ -90,23 +90,6 @@ function zzzip () {
 }
 alias zip=zzzip
 
-# command alias
-# (to invoke original command, use "\command")
-#
-#alias emacs='/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.4/bin/emacs-26.1'
-alias rm='/usr/local/bin/trash -F'
-
-# buffer clear on iTerm2
-alias cls='printf "\e]50;ClearScrollback\a"'
-
-#unalias ls
-#alias ll="ls -FlGh --time-style='+%Y-%m-%d %H:%M:%S' | sed -E '2,$s/ +[0-9]+//'"
-#alias ll="ls -lGh --color --time-style='+%Y-%m-%d %H:%M:%S'"
-alias ls="ls --color"
-alias ll="ls -lGh"
-alias cd..="cd .."
-alias cd-="cd -"
-
 ##########################
 # history
 
@@ -286,15 +269,52 @@ alias meld='/Applications/Meld.app/Contents/MacOS/Meld'
 # wine
 # alias wine='/Applications/Wine\ Stable.app/Contents/MacOS/wine'
 
+if [[ $(uname -m) != 'arm64' ]]; then
+    export CPU='intel'
+else
+    export CPU='arm'
+fi
+
+if [[ $CPU == 'intel' ]]; then
+    PATH="/usr/local/bin:$PATH"
+else
+    PATH="/opt/homebrew/bin:$PATH"
+fi
+
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/share/emacs/site-lisp/clisp:$PATH"
+
+####################################################
+# command alias
+# (to invoke original command, use "\command")
+
+if [[ $CPU == 'intel' ]]; then
+    alias rm='/usr/local/bin/trash -F'
+else
+    alias rm='/opt/homebrew/bin/trash -F'
+fi
+
+# buffer clear on iTerm2
+alias cls='printf "\e]50;ClearScrollback\a"'
+
+#unalias ls
+#alias ll="ls -FlGh --time-style='+%Y-%m-%d %H:%M:%S' | sed -E '2,$s/ +[0-9]+//'"
+#alias ll="ls -lGh --color --time-style='+%Y-%m-%d %H:%M:%S'"
+alias ls="ls --color"
+alias ll="ls -lGh"
+alias cd..="cd .."
+alias cd-="cd -"
 
 alias bp=bpython
 alias e=open
 
 # postgresql@13 (from brew)
-export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+if [[ $CPU == 'intel' ]]; then
+    export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
+else
+    export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
+fi
 export LANNG=en_US.utf-8
 export LC_ALL=en_US.utf-8
 
@@ -302,7 +322,12 @@ export PATH=$HOME/bin:$PATH      # add to end of this file
 
 # less setting (Mac)
 export LESS='-R -N -S'
-export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'
+
+if [[ $CPU == 'intel' ]]; then
+    export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'
+else
+    export LESSOPEN='| /opt/homebrew/bin/src-hilite-lesspipe.sh %s'
+fi
 
 # change background color to yellow for highlight search word in less
 # https://qiita.com/PruneMazui/items/8a023347772620025ad6

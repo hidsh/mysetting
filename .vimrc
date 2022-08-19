@@ -36,7 +36,7 @@ noremap ] %
 "
 " line number
 "
-set number
+"set number
 
 function! s:toggle_linum()
 	set number!
