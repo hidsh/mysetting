@@ -367,8 +367,9 @@ export SERIAL=/dev/tty.usbmodem14201
 
 # auto-print time for command
 export REPORTTIME=2
+export TIMEFMT=$'⏰%E total'
 
-
+#
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
