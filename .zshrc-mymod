@@ -373,3 +373,8 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# pyenv for qmk
+#    % echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+#    % echo 'eval "$(pyenv init -)"' >> ~/mysetting/.zshrc-mymod
+eval "$(pyenv init -)"
