@@ -338,7 +338,7 @@ export LESS_TERMCAP_se=$(echo -e '\e[0m')
 #function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
 
-alias gi='gibo -dump'
+# alias gi='gibo -dump'
 alias file='file -h'    # not follow symlink
 
 export GIT_INIT_ID=4b825dc642cb6eb9a060e54bf8d69288fbee4904
