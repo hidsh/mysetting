@@ -4,6 +4,7 @@ bind generic	G			move-last-line
 bind main		G			move-last-line
 bind generic	<Esc>o		view-grep
 #bind main		<Esc>g		:toggle commit-title-graph
+bind status		!		    status-update
 
 
 # main viewの左端にコミットIDを表示する

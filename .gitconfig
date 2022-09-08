@@ -49,6 +49,7 @@
 	unstage = reset HEAD --
 	uncommit = reset --hard HEAD^
     a = add -A --verbose
+	diff-staged = diff --cached
     amend = commit --amend --no-edit
     amend-comment = commit --amend
     s = status
