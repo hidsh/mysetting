@@ -13,7 +13,8 @@
 [core]
 	editor = vim -u NONE -c \"set fenc=utf-8\"
 	whitespace = cr-at-eol
-	pager = $PAGER
+	#pager = $PAGER
+    pager = "$PAGER --RAW-CONTROL-CHARS --quit-if-one-screen --no-init --shift 2 -n"
 [filter "media"]
 	required = true
 	clean = git media clean %f

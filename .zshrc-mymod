@@ -308,6 +308,7 @@ alias cd-="cd -"
 
 alias bp=bpython
 alias e=open
+alias tree='tree -I "*.pyc|__pycache__|*~"'
 
 # postgresql@13 (from brew)
 if [[ $CPU == 'intel' ]]; then
@@ -321,7 +322,7 @@ export LC_ALL=en_US.utf-8
 export PATH=$HOME/bin:$PATH      # add to end of this file
 
 # less setting (Mac)
-export LESS='-R -N -S'
+export LESS='-R -N -S --no-init --shift 4 --LONG-PROMPT'
 
 if [[ $CPU == 'intel' ]]; then
     export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'
@@ -379,3 +380,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #    % echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
 #    % echo 'eval "$(pyenv init -)"' >> ~/mysetting/.zshrc-mymod
 eval "$(pyenv init -)"
+
+# nim
+export PATH=/Users/g/.nimble/bin:$PATH
+
