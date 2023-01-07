@@ -407,3 +407,10 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
 # rbenv, ruby
 eval "$(rbenv init -)"
+
+# cd-gitroot
+# https://qiita.com/mollifier/items/cf0263dccc112ab8b87d
+fpath=($HOME/.zprezto/modules/git/functions/cd-gitroot(N-/) $fpath)
+
+autoload -Uz cd-gitroot
+alias cdg='cd-gitroot'
