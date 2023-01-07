@@ -276,14 +276,13 @@ else
 fi
 
 if [[ $CPU == 'intel' ]]; then
-    PATH="/usr/local/bin:$PATH"
+    export PATH="/usr/local/opt/texinfo/bin:$PATH"
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
 else
-    PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/opt/texinfo/bin:$PATH"
+    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 fi
-
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export PATH="/usr/local/share/emacs/site-lisp/clisp:$PATH"
+# export PATH="/usr/local/share/emacs/site-lisp/clisp:$PATH"
 
 ####################################################
 # command alias
@@ -345,8 +344,13 @@ alias file='file -h'    # not follow symlink
 export GIT_INIT_ID=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 
 # coreutils from brew
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+if [[ $CPU == 'intel' ]]; then
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+else
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
 
 alias dd='dd status=progress'
 
@@ -361,7 +365,8 @@ alias nano=no-cmd
 #export NODE_OPTIONS=--experimental-vm-modules
 
 # raspberry pi pico-sdk
-export PICO_SDK_PATH="$HOME/git-clone/pico-sdk"
+#export PICO_SDK_PATH="$HOME/git-clone/pico-sdk"
+export PICO_SDK_PATH="$HOME/pico/pico-sdk"
 
 # serial port
 export SERIAL=/dev/tty.usbmodem14201
@@ -371,7 +376,17 @@ export REPORTTIME=2
 export TIMEFMT=$'⏰%E total'
 
 #
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+if [[ $CPU == 'intel' ]]; then
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+else
+    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+fi
+
+if [[ $CPU == 'intel' ]]; then
+    PATH="/usr/local/bin:$PATH"
+else
+    PATH="/opt/homebrew/bin:$PATH"
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
