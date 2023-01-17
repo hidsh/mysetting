@@ -3,6 +3,7 @@ m forw-scroll
 M back-scroll
 h left-scroll
 l right-scroll
+#t chop-long-lines
 
 #env
 #LESS = -N -S

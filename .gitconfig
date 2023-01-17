@@ -1,9 +1,10 @@
 [url "hidsh@github.com:"]
 	pushinsteadof = https://github.com/
 
-[url "github:"]
-	InsteadOf = https://github.com/
-    InsteadOf = git@github.com:
+# disabled for rust
+#[url "github:"]
+#	InsteadOf = https://github.com/
+#    InsteadOf = git@github.com:
 
 [user]
 	name = hidsh
@@ -82,3 +83,5 @@
 
 [diff "to_utf16"]
 	textconv = iconv -f utf-16 -t utf-8
+[init]
+	defaultBranch = master

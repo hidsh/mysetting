@@ -414,3 +414,6 @@ fpath=($HOME/.zprezto/modules/git/functions/cd-gitroot(N-/) $fpath)
 
 autoload -Uz cd-gitroot
 alias cdg='cd-gitroot'
+
+alias gcc='gcc-12'
+alias mypath='echo $PATH | tr ":" "\n"'
