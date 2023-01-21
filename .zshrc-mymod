@@ -415,5 +415,11 @@ fpath=($HOME/.zprezto/modules/git/functions/cd-gitroot(N-/) $fpath)
 autoload -Uz cd-gitroot
 alias cdg='cd-gitroot'
 
+# Mac: use gnu-gcc instead of clang-gcc forcely
 alias gcc='gcc-12'
 alias mypath='echo $PATH | tr ":" "\n"'
+
+# unbind shell keybindings
+# check command 'bindkey'
+bindkey -r "^[T"        # transpose-words
+bindkey -r "^[t"        # transpose-words
