@@ -8,6 +8,8 @@ put_b() {
 
 #----------------------------
 put_a .dircolors
+# put_b .dircolors-wsl ~/.dircolors # for windows(wsl2)
+
 # put_a .gitconfig
 put_a .gitignore
 put_a .lesskey
