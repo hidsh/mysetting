@@ -786,7 +786,30 @@ Find.Find...</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
-		<key>0x6a-0x100000-0x26</key>
+		<key>0x69-0x100000-0x22</key>
+		<dict>
+			<key>Action</key>
+			<integer>0</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>0</integer>
+		</dict>
+		<key>0x70-0x100000-0x23</key>
+		<dict>
+			<key>Action</key>
+			<integer>25</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>Paste
+Paste</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<key>0x75-0x100000-0x20</key>
 		<dict>
 			<key>Action</key>
 			<integer>2</integer>
@@ -797,16 +820,17 @@ Find.Find...</string>
 			<key>Version</key>
 			<integer>0</integer>
 		</dict>
-		<key>0x6b-0x100000-0x28</key>
+		<key>0x79-0x100000-0x10</key>
 		<dict>
 			<key>Action</key>
-			<integer>0</integer>
+			<integer>25</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string></string>
+			<string>Copy Mode
+Copy Mode</string>
 			<key>Version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
@@ -884,6 +908,12 @@ Find.Find...</string>
 	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>IRMemory</key>
+	<integer>4</integer>
+	<key>NeverWarnAboutShortLivedSessions_CB78BA40-0B57-444F-978B-FAAE4FE39D13</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_CB78BA40-0B57-444F-978B-FAAE4FE39D13_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1551,6 +1581,8 @@ Find.Find...</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Set Local Environment Vars</key>
+			<true/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
@@ -2339,7 +2371,11 @@ Find.Find...</string>
 			<string>/Users/g</string>
 		</dict>
 	</array>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
 	<key>OpenFileInNewWindows</key>
+	<true/>
+	<key>OpenNoWindowsAtStartup</key>
 	<true/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
@@ -2390,6 +2426,10 @@ Find.Find...</string>
 	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
 	<false/>
+	<key>SwitchTabModifier</key>
+	<integer>9</integer>
+	<key>SwitchWindowModifier</key>
+	<integer>9</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>6</integer>
 	<key>TabViewType</key>

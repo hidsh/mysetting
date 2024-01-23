@@ -50,6 +50,7 @@
 	log-last = log -1 HEAD
 	unstage = reset HEAD --
 	uncommit = reset --hard HEAD^
+	uncommit-first-commit = update-ref -d HEAD
     a = add -A --verbose
 	diff-staged = diff --cached
     amend = commit --amend --no-edit
@@ -62,6 +63,7 @@
     bs-master = checkout master
     bmk = checkout -b
     bpush = push -u origin
+    brm = branch -D
     bdel = branch -D
     bdel-remote = push --delete origin
 	brename = branch -m

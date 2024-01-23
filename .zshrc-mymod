@@ -72,6 +72,7 @@ export VISUAL='vim'
 #export PAGER=vimpager
 #alias less=$PAGER
 #alias more=$PAGER
+alias man='LESS="" man'
 
 # represent file path in title bar
 precmd() {eval 'echo -ne "\033]0;${PWD/#$HOME/~}\007"'}
@@ -174,6 +175,8 @@ export FZF_CTRL_T_OPTS='--height 100% --preview="[[ $(file --mime {}) =~ binary 
                  (highlight -O ansi -l {} || \
                   cat {}) 2> /dev/null | head -100"'
 export FZF_CTRL_R_OPTS='--with-nth=2..'
+#export FZF_ALT_C_OPTS="--preview 'tree -CFA {} | head -200'"
+export FZF_ALT_C_OPTS="--preview 'exa -T {} | head -20'"
 
 if type rg &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -219,25 +222,25 @@ function fzf-git-hash() {
 # bindkey '^r' select-history
 
 # cdr with fzf
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
+#autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+#add-zsh-hook chpwd chpwd_recent_dirs
 
-zstyle ':completion:*' recent-dirs-insert both
-zstyle ':chpwd:*' recent-dirs-max 500
-zstyle ':chpwd:*' recent-dirs-default true
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
-zstyle ':chpwd:*' recent-dirs-pushd true
+#zstyle ':completion:*' recent-dirs-insert both
+#zstyle ':chpwd:*' recent-dirs-max 500
+#zstyle ':chpwd:*' recent-dirs-default true
+#zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
+#zstyle ':chpwd:*' recent-dirs-pushd true
 
-function fzf-cdr() {
-    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf --prompt="cd:")
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-   zle clear-screen
-}
-zle -N fzf-cdr
-bindkey '^v' fzf-cdr
+#function fzf-cdr() {
+#    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf --prompt="cd:")
+#    if [ -n "$selected_dir" ]; then
+#        BUFFER="cd ${selected_dir}"
+#        zle accept-line
+#    fi
+#   zle clear-screen
+#}
+#zle -N fzf-cdr
+#bindkey '^v' fzf-cdr
 
 
 
@@ -423,3 +426,21 @@ alias mypath='echo $PATH | tr ":" "\n"'
 # check command 'bindkey'
 bindkey -r "^[T"        # transpose-words
 bindkey -r "^[t"        # transpose-words
+
+# picocom as arduino serial monitor
+alias picocom='picocom --imap lfcrlf /dev/tty.usbmodem11101'
+
+# Renesas R8C C++ framework
+PATH=$PATH:/usr/local/m32c-elf/bin
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# jekyll-zzz-kbd
+#/Users/g/.local/share/gem/ruby/3.2.0/bin
+export PATH="$HOME/.local/share/gem/ruby/3.2.0/bin:$PATH"
+
+# zephyr (not for zmk firmware)
+#export ZEPHYR_BASE=/Users/g/zeph-3.5.0/zephyr
+#export ESPTOOL_PORT=/dev/cu.usbmodem1101
+
