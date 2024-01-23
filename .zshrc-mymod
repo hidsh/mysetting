@@ -169,15 +169,15 @@ setopt inc_append_history
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_COMPLETION_TRIGGER=',,'	# ,,<TAB>でfzfに入る
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border --header-lines=0 --inline-info'
+export FZF_DEFAULT_OPTS='--height 40% --reverse --header-lines=0 --border=none --no-separator --no-info --no-scrollbar'
 #export FZF_CTRL_T_OPTS='--height 100% --preview="[[ $(file --mime {}) =~ binary ]] && \
 #                 echo {} is a binary file || \
 #                 (highlight -O ansi -l {} || \
 #                 cat {}) 2> /dev/null | head -100"'
-export FZF_CTRL_T_OPTS='--preview "bat --theme zenburn --color=always --style=grid --line-range :100 {}"'
+export FZF_CTRL_T_OPTS='--bind ctrl-p:preview-up,ctrl-n:preview-down --preview "bat --theme zenburn --color=always --style=grid --line-range :100 {}"'
 export FZF_CTRL_R_OPTS='--with-nth=2..'
 #export FZF_ALT_C_OPTS="--preview 'tree -CFA {} | head -200'"
-export FZF_ALT_C_OPTS="--preview 'exa -T {} | head -20'"
+export FZF_ALT_C_OPTS="--bind ctrl-p:preview-up,ctrl-n:preview-down --preview 'exa -T {} | head -100'"
 
 if type rg &> /dev/null; then
 	export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
