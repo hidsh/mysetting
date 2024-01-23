@@ -169,7 +169,8 @@ setopt inc_append_history
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_COMPLETION_TRIGGER=',,'	# ,,<TAB>でfzfに入る
-export FZF_DEFAULT_OPTS='--height 40% --reverse --header-lines=0 --border=none --no-separator --no-info --no-scrollbar'
+FZF_THEME_DRACURA_MOD='--color=dark,fg:-1,bg:-1,hl:#ff87d7,fg+:#d6ffe0,bg+:-1,hl+:#5fff87,info:#af87ff,prompt:#ff87d7,pointer:#5fff87,marker:#ff87d7,spinner:#ff87d7 '
+export FZF_DEFAULT_OPTS=$FZF_THEME_DRACURA_MOD'--height 40% --reverse --header-lines=0 --border=none --no-separator --no-info --no-scrollbar'
 #export FZF_CTRL_T_OPTS='--height 100% --preview="[[ $(file --mime {}) =~ binary ]] && \
 #                 echo {} is a binary file || \
 #                 (highlight -O ansi -l {} || \
