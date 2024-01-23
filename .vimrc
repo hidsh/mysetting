@@ -117,6 +117,7 @@ au FileType * setlocal formatoptions-=o
 
 "OSのクリップボードを使用する
 set clipboard+=unnamedplus
+set clipboard+=unnamed
 
 " for windows on wsl2
 "
