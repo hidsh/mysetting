@@ -11,7 +11,14 @@
 "command + insert 	noremap!	map!
 "------------------------------------------------------
 
+" swap ; and : (normal mode)
 nnoremap ; :
+nnoremap : ;
+
+" swap ; and : (insert mode)
+inoremap ; :
+inoremap : ;
+
 "nnoremap : <ESC>	" disable :
 nnoremap 4 $
 
@@ -150,4 +157,9 @@ set noet ts=4 sts=-1 sw=0
 
 " .lesskeyを保存したら自動的にコンパイルする
 autocmd BufWritePost ~/.lesskey call system("lesskey " .. expand("%"))
+
+
+" :sでの置換を楽にする
+" https://zenn.dev/vim_jp/articles/2023-06-30-vim-substitute-tips
+cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s///g<Left><Left>" : 's'
 
