@@ -293,11 +293,12 @@ fi
 # command alias
 # (to invoke original command, use "\command")
 
-if [[ $CPU == 'intel' ]]; then
-    alias rm='/usr/local/bin/trash -F'
-else
-    alias rm='/opt/homebrew/bin/trash -F'
-fi
+#if [[ $CPU == 'intel' ]]; then
+# alias rm='/usr/local/bin/trash -F'		# intel mac
+# alias rm='/usr/bin/trash -f'			# ubuntu: `sudo apt install trash-bin`
+#else
+# alias rm='/opt/homebrew/bin/trash -F'		# M1 mac
+#fi
 
 # buffer clear on iTerm2
 alias cls='printf "\e]50;ClearScrollback\a"'
@@ -308,6 +309,7 @@ alias cls='printf "\e]50;ClearScrollback\a"'
 alias ls="ls --color"
 alias ll="ls -lGh"
 alias cd..="cd .."
+alias cd...="cd ../.."
 alias cd-="cd -"
 
 alias bp=bpython
@@ -315,11 +317,11 @@ alias e=open
 alias tree='tree -I "*.pyc|__pycache__|*~"'
 
 # postgresql@13 (from brew)
-if [[ $CPU == 'intel' ]]; then
-    export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
-else
-    export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
-fi
+#if [[ $CPU == 'intel' ]]; then
+#    export PATH="/usr/local/opt/postgresql@13/bin:$PATH"		# intel mac
+#else
+#    export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"	# M1 mac
+#fi
 export LANNG=en_US.utf-8
 export LC_ALL=en_US.utf-8
 
@@ -328,11 +330,11 @@ export PATH=$HOME/bin:$PATH      # add to end of this file
 # less setting (Mac)
 export LESS='-R -N -S --no-init --shift 4 --LONG-PROMPT'
 
-if [[ $CPU == 'intel' ]]; then
-    export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'
-else
-    export LESSOPEN='| /opt/homebrew/bin/src-hilite-lesspipe.sh %s'
-fi
+#if [[ $CPU == 'intel' ]]; then
+# export LESSOPEN='| /usr/local/opt/source-highlight/bin/src-hilite-lesspipe.sh %s'	# intel mac
+#else
+# export LESSOPEN='| /opt/homebrew/bin/src-hilite-lesspipe.sh %s'	# M1 mac
+#fi
 
 # change background color to yellow for highlight search word in less
 # https://qiita.com/PruneMazui/items/8a023347772620025ad6
@@ -349,18 +351,18 @@ alias file='file -h'    # not follow symlink
 export GIT_INIT_ID=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 
 # coreutils from brew
-if [[ $CPU == 'intel' ]]; then
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-else
-    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-    MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
-fi
+#if [[ $CPU == 'intel' ]]; then
+#    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"		# intel mac
+#    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+#else
+#    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"	# M1 mac
+#    MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+#fi
 
 alias dd='dd status=progress'
 
 function no-cmd() {
-	echo "This command is Unbound by 'no-cmd' in .zshrc"
+	echo "Missing command by 'no-cmd' in .zshrc"
 }
 
 alias pico=no-cmd
@@ -381,11 +383,11 @@ export REPORTTIME=2
 export TIMEFMT=$'⏰%E total'
 
 #
-if [[ $CPU == 'intel' ]]; then
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
-else
-    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-fi
+#if [[ $CPU == 'intel' ]]; then
+#    export PATH="/usr/local/opt/llvm/bin:$PATH"	# intel mac
+#else
+#    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"	# M1 mac
+#fi
 
 if [[ $CPU == 'intel' ]]; then
     PATH="/usr/local/bin:$PATH"
@@ -399,7 +401,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # pyenv for qmk
 #    % echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
 #    % echo 'eval "$(pyenv init -)"' >> ~/mysetting/.zshrc-mymod
-eval "$(pyenv init -)"
+#eval "$(pyenv init -)"
 
 # nim
 export PATH=/Users/g/.nimble/bin:$PATH
@@ -411,7 +413,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
 # rbenv, ruby
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # cd-gitroot
 # https://qiita.com/mollifier/items/cf0263dccc112ab8b87d

@@ -14,9 +14,26 @@ $ tree -a -I '.git|.DS_Store'
 `-- install.sh
 ```
 
+Note (\*): **NOT** installed by default, so it is commented out in the `install.sh`. Check the line then uncomment it if you need.
+
+
 ## install
 
-Note (*): So `.gitconfig` is commented out, it will *NOT* be installed at default. check that line then uncoment it, then install as following:
+At first, you should install prezto as follows:
+```
+zsh
+
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+```
+
+*Refer to:* https://github.com/sorin-ionescu/prezto
+
+Then install these settings:
 
 ```
 git clone git@github.com:hidsh/mysetting.git
